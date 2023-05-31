@@ -183,7 +183,7 @@ async function sum_check (ctx: customContext) {
                         ctx.wizard.selectStep(5)
                         let message: string = `Вы ввели ${ctx.scene.session.sum} ${ctx.scene.session.web}\n\n`
                         message += `Вы получаете: ${(quote * ctx.scene.session.sum).toFixed(10)} ${ctx.scene.session.web2.toUpperCase()}`
-                        message += `\n\nВведите свой кошелек TRX, на который вы хотите получить ${ctx.scene.session.web}`
+                        message += `\n\nВведите свой кошелек ${ctx.scene.session.web2.toUpperCase()}, на который вы хотите получить ${ctx.scene.session.web}`
                         ctx.scene.session.summary = (quote * ctx.scene.session.sum).toFixed(10)
                         ctx.editMessageText(message)
                         console.log('1 USDT = ' + quote + ` ${ctx.scene.session.web2.toUpperCase()}`)
