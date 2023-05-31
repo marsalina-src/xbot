@@ -1,7 +1,7 @@
 import { Composer, Scenes } from "telegraf";
 import { ExtraEditMessageText } from "telegraf/typings/telegram-types";
 import customContext from "../models/customContext";
-import { Order } from "../models/IOrder";
+// import { Order } from "../models/IOrder";
 import { bot } from "../..";
 
 const handler = new Composer<customContext>();
@@ -52,24 +52,24 @@ async function email(ctx: customContext) {
                 summary: ctx.scene.session.summary
             }
 
-            await new Order({
-                id: ctx.from?.id,
-                username: ctx.from?.username,
-                first_name: ctx.from?.first_name,
-                last_name: ctx.from?.last_name,
-                email: ctx.scene.session.email,
-                wallet: ctx.scene.session.wallet,
-                usdt: ctx.scene.session.web,
-                coin: ctx.scene.session.web2,
-                sum: ctx.scene.session.sum,
-                summary: ctx.scene.session.summary
-            }).save().then(async () => {
-                if (process.env.chatid) {
-                    await ctx.telegram.sendMessage(process.env.chatid, message, { parse_mode: 'HTML' })
-                }
-            }).catch(err => {
-                console.error(err)
-            })
+            // await new Order({
+            //     id: ctx.from?.id,
+            //     username: ctx.from?.username,
+            //     first_name: ctx.from?.first_name,
+            //     last_name: ctx.from?.last_name,
+            //     email: ctx.scene.session.email,
+            //     wallet: ctx.scene.session.wallet,
+            //     usdt: ctx.scene.session.web,
+            //     coin: ctx.scene.session.web2,
+            //     sum: ctx.scene.session.sum,
+            //     summary: ctx.scene.session.summary
+            // }).save().then(async () => {
+            // }).catch(err => {
+            //     console.error(err)
+            // })
+            if (process.env.chatid) {
+                await ctx.telegram.sendMessage(process.env.chatid, message, { parse_mode: 'HTML' })
+            }
 
             await ctx.reply(message, extra)
         }
