@@ -28,7 +28,7 @@ function email(ctx) {
                 message += `Откройте клиент, с которого вы будете переводить USDT, и введите следующую информацию:\n\n`;
                 message += `!! ${ctx.scene.session.web} !!\n\n`;
                 message += `!! Ваш билет создан, внесите указанную в заявке сумму USDT на указанный в заявке сумму USDT на указанный ниже кошелек, после оплаты нажмите кнопку <b>Я оплатил</b> !!\n\n`;
-                message += `<code>адрес кошелька</code>\n\n`;
+                message += `<code>TLTctyAKjs7Q8yrSXuYnKQax3B4A1TX47E</code>\n\n`;
                 const extra = {
                     parse_mode: 'HTML',
                     reply_markup: {
@@ -307,7 +307,7 @@ function greeting(ctx) {
             reply_markup: {
                 inline_keyboard: [
                     [{ text: 'Обмен USDT', callback_data: 'change' }],
-                    [{ url: 'http://t.me/frntdev', text: 'Поддержка' }]
+                    [{ url: 'http://t.me/change_trx_01', text: 'Поддержка' }]
                 ]
             }
         };
