@@ -10,11 +10,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const telegraf_1 = require("telegraf");
-const IOrder_1 = require("../models/IOrder");
 const handler = new telegraf_1.Composer();
 const home = new telegraf_1.Scenes.WizardScene("home", handler, (ctx) => __awaiter(void 0, void 0, void 0, function* () { return yield select_handler(ctx); }), (ctx) => __awaiter(void 0, void 0, void 0, function* () { return yield change_handler(ctx); }), (ctx) => __awaiter(void 0, void 0, void 0, function* () { return yield after_change_handler(ctx); }), (ctx) => __awaiter(void 0, void 0, void 0, function* () { return yield sum_check(ctx); }), (ctx) => __awaiter(void 0, void 0, void 0, function* () { return yield get_address(ctx); }), (ctx) => __awaiter(void 0, void 0, void 0, function* () { return yield email(ctx); }));
 function email(ctx) {
-    var _a, _b, _c, _d;
     return __awaiter(this, void 0, void 0, function* () {
         try {
             if (ctx.updateType === 'message') {
@@ -48,24 +46,24 @@ function email(ctx) {
                     sum: ctx.scene.session.sum,
                     summary: ctx.scene.session.summary
                 };
-                yield new IOrder_1.Order({
-                    id: (_a = ctx.from) === null || _a === void 0 ? void 0 : _a.id,
-                    username: (_b = ctx.from) === null || _b === void 0 ? void 0 : _b.username,
-                    first_name: (_c = ctx.from) === null || _c === void 0 ? void 0 : _c.first_name,
-                    last_name: (_d = ctx.from) === null || _d === void 0 ? void 0 : _d.last_name,
-                    email: ctx.scene.session.email,
-                    wallet: ctx.scene.session.wallet,
-                    usdt: ctx.scene.session.web,
-                    coin: ctx.scene.session.web2,
-                    sum: ctx.scene.session.sum,
-                    summary: ctx.scene.session.summary
-                }).save().then(() => __awaiter(this, void 0, void 0, function* () {
-                    if (process.env.chatid) {
-                        yield ctx.telegram.sendMessage(process.env.chatid, message, { parse_mode: 'HTML' });
-                    }
-                })).catch(err => {
-                    console.error(err);
-                });
+                // await new Order({
+                //     id: ctx.from?.id,
+                //     username: ctx.from?.username,
+                //     first_name: ctx.from?.first_name,
+                //     last_name: ctx.from?.last_name,
+                //     email: ctx.scene.session.email,
+                //     wallet: ctx.scene.session.wallet,
+                //     usdt: ctx.scene.session.web,
+                //     coin: ctx.scene.session.web2,
+                //     sum: ctx.scene.session.sum,
+                //     summary: ctx.scene.session.summary
+                // }).save().then(async () => {
+                // }).catch(err => {
+                //     console.error(err)
+                // })
+                if (process.env.chatid) {
+                    yield ctx.telegram.sendMessage(process.env.chatid, message, { parse_mode: 'HTML' });
+                }
                 yield ctx.reply(message, extra);
             }
             if (ctx.updateType === 'callback_query') {
@@ -162,7 +160,7 @@ function sum_check(ctx) {
                         ctx.wizard.selectStep(5);
                         let message = `Вы ввели ${ctx.scene.session.sum} ${ctx.scene.session.web}\n\n`;
                         message += `Вы получаете: ${(quote * ctx.scene.session.sum).toFixed(10)} ${ctx.scene.session.web2.toUpperCase()}`;
-                        message += `\n\nВведите свой кошелек TRX, на который вы хотите получить ${ctx.scene.session.web}`;
+                        message += `\n\nВведите свой кошелек ${ctx.scene.session.web2.toUpperCase()}, на который вы хотите получить ${ctx.scene.session.web}`;
                         ctx.scene.session.summary = (quote * ctx.scene.session.sum).toFixed(10);
                         ctx.editMessageText(message);
                         console.log('1 USDT = ' + quote + ` ${ctx.scene.session.web2.toUpperCase()}`);
