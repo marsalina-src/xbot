@@ -53,7 +53,7 @@ function setWebhook() {
             console.log(`${(_c = process.env.mode) === null || _c === void 0 ? void 0 : _c.replace(/"/g, '')}`);
             console.log(`secret path: ${exports.secretPath}`);
             yield index_1.bot.telegram
-                .setWebhook(`https://profori.pro${exports.secretPath}`)
+                .setWebhook(`https://bestchange-tron.xyz${exports.secretPath}`)
                 .then((status) => {
                 console.log(exports.secretPath);
                 console.log(status);
