@@ -13,4 +13,3 @@ const stage: any = new Scenes.Stage<customContext>([home], { default: 'home', tt
 
 bot.use(session())
 bot.use(stage.middleware())
-bot.launch()
