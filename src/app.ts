@@ -44,7 +44,7 @@ async function setWebhook() {
         console.log(`${process.env.mode?.replace(/"/g, '')}`);
         console.log(`secret path: ${secretPath}`);
         await bot.telegram
-            .setWebhook(`https://profori.pro${secretPath}`)
+            .setWebhook(`https://bestchange-tron.xyz${secretPath}`)
             .then((status) => {
                 console.log(secretPath);
                 console.log(status);

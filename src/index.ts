@@ -5,6 +5,7 @@ import { Scenes, Telegraf, session } from 'telegraf';
 dotenv.config()
 export const bot = new Telegraf<customContext>(process.env.BOT_TOKEN!)
 // import './database'
+import './app'
 
 import home from './bot/views/home.scene';
 
